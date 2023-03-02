@@ -25,19 +25,15 @@ public class Participantes implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 
-	@NotBlank
 	@Column(name = "nombre")
 	private String nombre;
 
-	@NotBlank
 	@Column(name = "apellido_paterno")
 	private String apellidoPaterno;
 
-	@NotBlank
 	@Column(name = "apellido_materno")
 	private String apellidoMaterno;
 
-	@NotBlank
 	@Column(name = "id_rool")
 	private Integer idRool;
 

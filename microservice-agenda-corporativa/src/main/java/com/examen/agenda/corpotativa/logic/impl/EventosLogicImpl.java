@@ -18,6 +18,7 @@ import com.examen.agenda.corpotativa.logic.EventosLogic;
 import com.examen.agenda.corpotativa.model.EventosRequestBody;
 import com.examen.agenda.corpotativa.model.GenericResponse;
 import com.examen.agenda.corpotativa.utils.Constantes;
+import com.examen.agenda.corpotativa.utils.DateUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,6 +39,28 @@ public class EventosLogicImpl implements EventosLogic {
 			response.setMensaje(Constantes.MENSAJE_200);
 			response.setResultado(
 					responseBody.stream().map(evento -> getEventosRequestBody(evento)).collect(Collectors.toList()));
+		} catch (HttpServerErrorException e) {
+			log.error("Error: " + ExceptionUtils.getStackTrace(e));
+			throw new HttpServerErrorException(e.getStatusCode());
+		} catch (Exception e) {
+			log.error("Error: " + ExceptionUtils.getStackTrace(e));
+			throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
+	}
+
+	@Override
+	public GenericResponse<EventosRequestBody> obtenerPorId(Integer id)
+			throws HttpServerErrorException, ArgumentNotValidException {
+		GenericResponse<EventosRequestBody> response = new GenericResponse<>();
+		try {
+			EventosRequestBody resultado = new EventosRequestBody();
+			Optional<Eventos> responseBody = dao.findById(id);
+			if (responseBody.isPresent()) {
+				resultado = getEventosRequestBody(responseBody.get());
+			}
+			response.setMensaje(Constantes.MENSAJE_200);
+			response.setResultado(resultado);
 		} catch (HttpServerErrorException e) {
 			log.error("Error: " + ExceptionUtils.getStackTrace(e));
 			throw new HttpServerErrorException(e.getStatusCode());
@@ -107,11 +130,14 @@ public class EventosLogicImpl implements EventosLogic {
 	}
 
 	private Eventos getEventos(EventosRequestBody body) {
+		log.info("GET RESPUESTA : "+body.toString());
 		Eventos entity = new Eventos();
 		entity.setId(body.getId());
 		entity.setNombre(body.getNombre());
 		entity.setCupo(body.getCupo());
 		entity.setFecha(new Date());
+		entity.setFechaInicio(DateUtil.dateFronDateTimeString(body.getFechaInicio()));
+		entity.setFechaFin(DateUtil.dateFronDateTimeString(body.getFechaFin()));
 		return entity;
 	}
 
@@ -120,6 +146,8 @@ public class EventosLogicImpl implements EventosLogic {
 		entity.setNombre(body.getNombre());
 		entity.setCupo(body.getCupo());
 		entity.setFechaModifico(new Date());
+		entity.setFechaInicio(DateUtil.dateFronDateTimeString(body.getFechaInicio()));
+		entity.setFechaFin(DateUtil.dateFronDateTimeString(body.getFechaFin()));
 		return entity;
 	}
 
@@ -128,6 +156,10 @@ public class EventosLogicImpl implements EventosLogic {
 		body.setId(entity.getId());
 		body.setNombre(entity.getNombre());
 		body.setCupo(entity.getCupo());
+		log.info("FECHA: "+entity.getFechaInicio());
+		log.info("FECHA: "+entity.getFechaFin());
+		body.setFechaInicio(DateUtil.dateFronDateTimeDate(entity.getFechaInicio()));
+		body.setFechaFin(DateUtil.dateFronDateTimeDate(entity.getFechaFin()));
 		return body;
 	}
 

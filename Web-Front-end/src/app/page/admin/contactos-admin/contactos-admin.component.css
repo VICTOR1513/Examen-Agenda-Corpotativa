@@ -1,0 +1,33 @@
+.form {
+  /*min-width: 150px;
+  max-width: 500px;*/
+  width: 100%;
+}
+
+.form-element {
+  /*padding: 5px 0px 25px 2px;*/
+  width: 100%;
+}
+
+.texto-font {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Tahoma, sans-serif;
+}
+
+.success-button {
+  background: green;
+}
+
+.enabled-color {
+  color: black !important;
+}
+
+
+.disabled-color {
+  color: rgba(0, 0, 0, .26) ;
+}
+
+.mat-icon {
+  font-size: 20px;
+}

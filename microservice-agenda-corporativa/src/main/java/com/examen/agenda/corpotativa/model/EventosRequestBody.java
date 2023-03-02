@@ -14,6 +14,11 @@ public class EventosRequestBody {
 	private String nombre;
 	@NotNull(message = Constantes.FORMATO_INVALIDO_BLANK)
 	private Integer cupo;
+	@NotNull(message = Constantes.FORMATO_INVALIDO_BLANK)
+	private String fechaInicio;
+	@NotNull(message = Constantes.FORMATO_INVALIDO_BLANK)
+	private String fechaFin;
+
 //	@NotNull(message = Constantes.FORMATO_INVALIDO_BLANK)
 //	private Integer numeroSolicitud;
 ////	private Integer idTipoSolicitud;

@@ -1,0 +1,67 @@
+<!--div class="section layout_padding" style="background-color: #ebebeb;">
+  <div class="container center">
+    <mat-card class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+      <mat-toolbar>
+        <span class="fill-remaining-space">Catalogo de Servicios</span>
+      </mat-toolbar>
+
+      <mat-card-content>
+        <form [formGroup]="formulario" class="form">
+          <div class="example-container">
+
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-label>Nombre</mat-label>
+              <input formControlName="nombre" matInput placeholder="Nombre del producto">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-label>Descripción</mat-label>
+              <input formControlName="descripcion" matInput placeholder="Descripción del producto">
+              <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+
+
+            <ng-container *ngFor="let imagenes of entity.idCatalogoImagenes">
+              <button style="   width: 50px; text-align: center;float: right;" mat-raised-button color="warn"
+                (click)="eliminarImegenes(imagenes.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <img src="{{imagenes.urlImagen}}" alt="Random second slide" class="imagen" />
+            </ng-container>
+            <img *ngIf="urlImagen != null" [src]="urlImagen" class="imagen">
+
+
+
+            <div class="form-group">
+              <br />
+              <label for="file" style="color: red;">Agregue una imagen al producto</label><br />
+              <input type="file" id="file" (change)="seleccionarImagen($event)">
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <section>
+          <div class="example-button-row " style=" display: flex;
+          justify-content: right;">
+            <div class="example-button-container" style="padding: 10px;">
+              <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon"
+                (click)="regresar()">
+                <mat-icon>reply</mat-icon>
+              </button>
+            </div>
+            <div class="example-button-container" style="padding: 10px;">
+              <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                (click)="guardar()">
+                <mat-icon>save</mat-icon>
+              </button>
+            </div>
+          </div>
+        </section>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+</div-->

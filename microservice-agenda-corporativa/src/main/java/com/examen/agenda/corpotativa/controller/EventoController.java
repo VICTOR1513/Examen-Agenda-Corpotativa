@@ -36,6 +36,12 @@ public class EventoController {
 		return new ResponseEntity<>(service.obtener(), HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/obtener/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<GenericResponse<EventosRequestBody>> ontenerPorId(@PathVariable int id)
+			throws HttpServerErrorException, MethodArgumentNotValidException {
+		return new ResponseEntity<>(service.obtenerPorId(id), HttpStatus.OK);
+	}
+
 	@PostMapping(value = "/guardar", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<GenericResponse<String>> guardar(@RequestBody EventosRequestBody body)
 			throws HttpServerErrorException, MethodArgumentNotValidException {
