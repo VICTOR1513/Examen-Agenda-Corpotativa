@@ -8,13 +8,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("com.examen")
-//@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-public class OperacionesAutoservicioApplication {
+public class AgendaCorporativaApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(OperacionesAutoservicioApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(AgendaCorporativaApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(OperacionesAutoservicioApplication.class, args);
+		SpringApplication.run(AgendaCorporativaApplication.class, args);
 		log.info("Inicio de aplicacion");
 	}
 
