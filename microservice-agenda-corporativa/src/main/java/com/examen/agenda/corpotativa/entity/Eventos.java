@@ -16,10 +16,12 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "eventos")
 @Data
+@NoArgsConstructor
 public class Eventos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,11 +41,11 @@ public class Eventos implements Serializable {
 	@Column(name = "fecha")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
-	
+
 	@Column(name = "fecha_inicio")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaInicio;
-	
+
 	@Column(name = "fecha_fin")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaFin;
@@ -51,5 +53,9 @@ public class Eventos implements Serializable {
 	@Column(name = "fecha_modifico")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaModifico;
+
+	public Eventos(Integer id) {
+		this.id = id;
+	}
 
 }

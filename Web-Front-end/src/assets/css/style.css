@@ -1565,8 +1565,8 @@ p {
 }
 
 .layout_padding {
-	padding-top: 75px;
-	padding-bottom: 75px;
+	padding-top: 100px;
+	/*padding-bottom: 20%;*/
 }
 
 .heading_main h2 {

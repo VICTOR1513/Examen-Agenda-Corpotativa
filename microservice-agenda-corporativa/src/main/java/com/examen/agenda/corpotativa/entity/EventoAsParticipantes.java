@@ -39,5 +39,8 @@ public class EventoAsParticipantes implements Serializable {
 	@Column(name = "fecha")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Integer fecha;
+	
+	@Column(name = "asistencia")
+	private boolean asistencia;
 
 }

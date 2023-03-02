@@ -22,6 +22,14 @@ export const environment = {
       OBTENER: `${api}${resource}participantes/obtener`,
       OBTENER_BY_ID: `${api}${resource}participantes/obtener/`,
       ACTUALIZAR: `${api}${resource}participantes/actualizar`
+    },
+    INVITACION: {
+      ELIMINAR: `${api}${resource}eventos-as-participantes/eliminar/`,
+      GUARDAR: `${api}${resource}eventos-as-participantes/guardar`,
+      OBTENER: `${api}${resource}eventos-as-participantes/obtener`,
+      OBTENER_BY_ID: `${api}${resource}eventos-as-participantes/obtener/`,
+      OBTENER_BY_ID_EVENTO: `${api}${resource}eventos-as-participantes/obtener/participantes/`,
+      ACTUALIZAR: `${api}${resource}eventos-as-participantes/actualizar`
     }
   }
 

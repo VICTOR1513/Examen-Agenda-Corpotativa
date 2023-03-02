@@ -17,6 +17,7 @@ import com.examen.agenda.corpotativa.logic.ParticipantesLogic;
 import com.examen.agenda.corpotativa.model.GenericResponse;
 import com.examen.agenda.corpotativa.model.ParticipantesRequestBody;
 import com.examen.agenda.corpotativa.utils.Constantes;
+import com.examen.agenda.corpotativa.utils.ObjectUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,7 +36,7 @@ public class ParticipantesLogicImpl implements ParticipantesLogic {
 			List<Participantes> responseBody = dao.findAll();
 
 			response.setMensaje(Constantes.MENSAJE_200);
-			response.setResultado(responseBody.stream().map(participante -> getParticipanteRequestBody(participante))
+			response.setResultado(responseBody.stream().map(participante -> ObjectUtil.getParticipanteRequestBody(participante))
 					.collect(Collectors.toList()));
 		} catch (HttpServerErrorException e) {
 			log.error("Error: " + ExceptionUtils.getStackTrace(e));
@@ -55,7 +56,7 @@ public class ParticipantesLogicImpl implements ParticipantesLogic {
 			ParticipantesRequestBody resultado = new ParticipantesRequestBody();
 			Optional<Participantes> responseBody = dao.findById(id);
 			if (responseBody.isPresent()) {
-				resultado = getParticipanteRequestBody(responseBody.get());
+				resultado = ObjectUtil.getParticipanteRequestBody(responseBody.get());
 			}
 			response.setMensaje(Constantes.MENSAJE_200);
 			response.setResultado(resultado);
@@ -74,7 +75,7 @@ public class ParticipantesLogicImpl implements ParticipantesLogic {
 			throws HttpServerErrorException, ArgumentNotValidException {
 		GenericResponse<String> response = new GenericResponse<>();
 		try {
-			Participantes responseBody = dao.save(getParticipantes(body));
+			Participantes responseBody = dao.save(ObjectUtil.getParticipantes(body));
 			response.setMensaje(Constantes.MENSAJE_200);
 			response.setResultado("Registro guardado exitosamente.");
 		} catch (HttpServerErrorException e) {
@@ -127,17 +128,17 @@ public class ParticipantesLogicImpl implements ParticipantesLogic {
 		return response;
 	}
 
-	private Participantes getParticipantes(ParticipantesRequestBody body) {
-		log.info("GET RESPUESTA : " + body.toString());
-		Participantes entity = new Participantes();
-		entity.setId(body.getId());
-		entity.setNombre(body.getNombre());
-		entity.setApellidoPaterno(body.getApellidoPaterno());
-		entity.setApellidoMaterno(body.getApellidoMaterno());
-		entity.setIdRool(body.getIdRool());
-		;
-		return entity;
-	}
+//	private Participantes getParticipantes(ParticipantesRequestBody body) {
+//		log.info("GET RESPUESTA : " + body.toString());
+//		Participantes entity = new Participantes();
+//		entity.setId(body.getId());
+//		entity.setNombre(body.getNombre());
+//		entity.setApellidoPaterno(body.getApellidoPaterno());
+//		entity.setApellidoMaterno(body.getApellidoMaterno());
+//		entity.setIdRool(body.getIdRool());
+//		;
+//		return entity;
+//	}
 
 	private Participantes getParticipantes(Participantes entity, ParticipantesRequestBody body) {
 		entity.setNombre(body.getNombre());
@@ -147,14 +148,14 @@ public class ParticipantesLogicImpl implements ParticipantesLogic {
 		return entity;
 	}
 
-	private ParticipantesRequestBody getParticipanteRequestBody(Participantes entity) {
-		ParticipantesRequestBody body = new ParticipantesRequestBody();
-		body.setId(entity.getId());
-		body.setNombre(entity.getNombre());
-		body.setApellidoPaterno(entity.getApellidoPaterno());
-		body.setApellidoMaterno(entity.getApellidoMaterno());
-		body.setIdRool(entity.getIdRool());
-		return body;
-	}
+//	private ParticipantesRequestBody getParticipanteRequestBody(Participantes entity) {
+//		ParticipantesRequestBody body = new ParticipantesRequestBody();
+//		body.setId(entity.getId());
+//		body.setNombre(entity.getNombre());
+//		body.setApellidoPaterno(entity.getApellidoPaterno());
+//		body.setApellidoMaterno(entity.getApellidoMaterno());
+//		body.setIdRool(entity.getIdRool());
+//		return body;
+//	}
 
 }

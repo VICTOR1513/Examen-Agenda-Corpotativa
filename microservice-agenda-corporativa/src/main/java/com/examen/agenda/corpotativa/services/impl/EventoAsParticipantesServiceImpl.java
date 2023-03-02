@@ -1,45 +1,34 @@
-package com.examen.agenda.corpotativa.logic.impl;
+package com.examen.agenda.corpotativa.services.impl;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
 
-import com.examen.agenda.corpotativa.Repository.EventosRepository;
-import com.examen.agenda.corpotativa.entity.Eventos;
 import com.examen.agenda.corpotativa.excepcion.ArgumentNotValidException;
-import com.examen.agenda.corpotativa.logic.EventosLogic;
-import com.examen.agenda.corpotativa.model.EventosRequestBody;
+import com.examen.agenda.corpotativa.logic.EventoAsParticipantesLogic;
+import com.examen.agenda.corpotativa.model.EventoAsParticipantesRequestBody;
 import com.examen.agenda.corpotativa.model.GenericResponse;
-import com.examen.agenda.corpotativa.utils.Constantes;
-import com.examen.agenda.corpotativa.utils.DateUtil;
-import com.examen.agenda.corpotativa.utils.ObjectUtil;
+import com.examen.agenda.corpotativa.services.EventoAsParticipantesService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Component
-public class EventosLogicImpl implements EventosLogic {
-
+@Service
+public class EventoAsParticipantesServiceImpl  implements EventoAsParticipantesService {
+	
 	@Autowired
-	private EventosRepository dao;
+	private EventoAsParticipantesLogic logic;
 
 	@Override
-	public GenericResponse<List<EventosRequestBody>> obtener()
+	public GenericResponse<List<EventoAsParticipantesRequestBody>> obtener()
 			throws HttpServerErrorException, ArgumentNotValidException {
-		GenericResponse<List<EventosRequestBody>> response = new GenericResponse<>();
+		GenericResponse<List<EventoAsParticipantesRequestBody>> response = new GenericResponse<>();
 		try {
-			List<Eventos> responseBody = dao.findAll();
-
-			response.setMensaje(Constantes.MENSAJE_200);
-			response.setResultado(responseBody.stream().map(evento -> ObjectUtil.getEventosRequestBody(evento))
-					.collect(Collectors.toList()));
+			response = logic.obtener();
 		} catch (HttpServerErrorException e) {
 			log.error("Error: " + ExceptionUtils.getStackTrace(e));
 			throw new HttpServerErrorException(e.getStatusCode());
@@ -51,17 +40,27 @@ public class EventosLogicImpl implements EventosLogic {
 	}
 
 	@Override
-	public GenericResponse<EventosRequestBody> obtenerPorId(Integer id)
+	public GenericResponse<EventoAsParticipantesRequestBody> obtenerPorId(Integer id)
 			throws HttpServerErrorException, ArgumentNotValidException {
-		GenericResponse<EventosRequestBody> response = new GenericResponse<>();
+		GenericResponse<EventoAsParticipantesRequestBody> response = new GenericResponse<>();
 		try {
-			EventosRequestBody resultado = new EventosRequestBody();
-			Optional<Eventos> responseBody = dao.findById(id);
-			if (responseBody.isPresent()) {
-				resultado = ObjectUtil.getEventosRequestBody(responseBody.get());
-			}
-			response.setMensaje(Constantes.MENSAJE_200);
-			response.setResultado(resultado);
+			response = logic.obtenerPorId(id);
+		} catch (HttpServerErrorException e) {
+			log.error("Error: " + ExceptionUtils.getStackTrace(e));
+			throw new HttpServerErrorException(e.getStatusCode());
+		} catch (Exception e) {
+			log.error("Error: " + ExceptionUtils.getStackTrace(e));
+			throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
+	}
+	
+	@Override
+	public GenericResponse<List<EventoAsParticipantesRequestBody>> obtenerPorIdEvento(Integer id)
+			throws HttpServerErrorException, ArgumentNotValidException {
+		GenericResponse<List<EventoAsParticipantesRequestBody>> response = new GenericResponse<>();
+		try {
+			response = logic.obtenerPorIdEvento(id);
 		} catch (HttpServerErrorException e) {
 			log.error("Error: " + ExceptionUtils.getStackTrace(e));
 			throw new HttpServerErrorException(e.getStatusCode());
@@ -73,13 +72,11 @@ public class EventosLogicImpl implements EventosLogic {
 	}
 
 	@Override
-	public GenericResponse<String> guardar(EventosRequestBody body)
+	public GenericResponse<String> guardar(EventoAsParticipantesRequestBody body)
 			throws HttpServerErrorException, ArgumentNotValidException {
 		GenericResponse<String> response = new GenericResponse<>();
 		try {
-			Eventos responseBody = dao.save(ObjectUtil.getEventos(body));
-			response.setMensaje(Constantes.MENSAJE_200);
-			response.setResultado("Registro guardado exitosamente.");
+			response = logic.guardar(body);
 		} catch (HttpServerErrorException e) {
 			log.error("Error: " + ExceptionUtils.getStackTrace(e));
 			throw new HttpServerErrorException(e.getStatusCode());
@@ -91,18 +88,11 @@ public class EventosLogicImpl implements EventosLogic {
 	}
 
 	@Override
-	public GenericResponse<String> actualizar(EventosRequestBody body)
+	public GenericResponse<String> actualizar(EventoAsParticipantesRequestBody body)
 			throws HttpServerErrorException, ArgumentNotValidException {
 		GenericResponse<String> response = new GenericResponse<>();
 		try {
-			Optional<Eventos> evento = dao.findById(body.getId());
-			if (evento.isPresent()) {
-				Eventos responseBody = dao.save(getEventos(evento.get(), body));
-			} else {
-				throw new HttpServerErrorException(HttpStatus.BAD_REQUEST);
-			}
-			response.setMensaje(Constantes.MENSAJE_200);
-			response.setResultado("Registro actualizado exitosamente.");
+			response = logic.actualizar(body);
 		} catch (HttpServerErrorException e) {
 			log.error("Error: " + ExceptionUtils.getStackTrace(e));
 			throw new HttpServerErrorException(e.getStatusCode());
@@ -117,9 +107,7 @@ public class EventosLogicImpl implements EventosLogic {
 	public GenericResponse<String> eliminar(Integer id) throws HttpServerErrorException, ArgumentNotValidException {
 		GenericResponse<String> response = new GenericResponse<>();
 		try {
-			dao.deleteById(id);
-			response.setMensaje(Constantes.MENSAJE_200);
-			response.setResultado("Registro eliminado exitosamente.");
+			response = logic.eliminar(id);
 		} catch (HttpServerErrorException e) {
 			log.error("Error: " + ExceptionUtils.getStackTrace(e));
 			throw new HttpServerErrorException(e.getStatusCode());
@@ -130,14 +118,6 @@ public class EventosLogicImpl implements EventosLogic {
 		return response;
 	}
 
-	private Eventos getEventos(Eventos entity, EventosRequestBody body) {
-//		entity.setId(body.getId());
-		entity.setNombre(body.getNombre());
-		entity.setCupo(body.getCupo());
-		entity.setFechaModifico(new Date());
-		entity.setFechaInicio(DateUtil.dateFronDateTimeString(body.getFechaInicio()));
-		entity.setFechaFin(DateUtil.dateFronDateTimeString(body.getFechaFin()));
-		return entity;
-	}
+
 
 }

@@ -64,7 +64,7 @@ export class EventosService {
     return this.http.delete(this.api.ELIMINAR + id).pipe(
       map((response: any) => response.resultado as string),
       catchError(e => {
-        Alertas.error("Algo salió mal", "No se pudo eliminar el registro.");
+        Alertas.error("Algo salió mal", "El evento tiene participantes asignados, No se pudo eliminar el registro.");
         console.error(e.console.error.mensaje);
         throw new Error(e);
       })

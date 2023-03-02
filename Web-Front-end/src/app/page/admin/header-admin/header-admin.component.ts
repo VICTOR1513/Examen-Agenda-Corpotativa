@@ -13,26 +13,13 @@ export class HeaderAdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   public cerrarSesion(): void {
-    this.router.navigate(['Login']);
+    this.router.navigate(['Home']);
   }
 
   public home(): void {
     this.router.navigate(['Home']);
   }
-/*
-  public catalogoUsuarios(): void {
-    this.router.navigate(['Catalogo-Usuarios']);
-  }
-  public contactos(): void {
-    this.router.navigate(['Contactos']);
-  }
-
-  public catalogoCategorias(): void {
-    this.router.navigate(['Catalogo-Categorias']);
-  }*/
-
   public eventos(): void {
     this.router.navigate(['eventos']);
   }
@@ -40,9 +27,5 @@ export class HeaderAdminComponent implements OnInit {
   public participantes(): void {
     this.router.navigate(['participantes']);
   }
-
-
-
-
 
 }

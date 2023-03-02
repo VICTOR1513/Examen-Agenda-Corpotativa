@@ -1,5 +1,5 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { Contacto } from './../model/contacto';
+import { Contacto } from '../model/Invitacion';
 export class StringUtil {
 
 
@@ -19,7 +19,7 @@ export class StringUtil {
         this.condultarProducyoById();
       } else {
         this.formulario.reset();
-      }*/ 
+      }*/
     })
   }
 

@@ -1,3 +1,9 @@
+import { ListaParticipantesComponent } from './eventos/lista-Participantes/lista-participantes.component';
+import { InvitarComponent } from './eventos/invitar-participantes/invitar.component';
+import { ProductosFormComponent } from './eventos/eventos-form/eventos-form.component';
+import { ParticipantesFormComponent } from './participantes/participantes-form/participantes-form.component';
+import { ParticipantesComponent } from './participantes/participantes/participantes.component';
+import { EventosComponent } from './eventos/eventos/eventos.component';
 import { SharedModule } from './../../util/shared.module';
 import { Validador } from './../../util/validador';
 import { PhonePipe } from './../../pipes/phone.pipe';
@@ -6,13 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminRoutingModule } from './admin-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {  EventosComponent } from './productos/eventos/eventos.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
-import { ContactosAdminComponent } from './contactos-admin/contactos-admin.component';
-import { CatalogoUsuariosComponent } from './catalogo-usuarios/catalogo-usuarios.component';
-import { ProductosFormComponent } from './productos/eventos-form/eventos-form.component';
 /*ANGULAR MATERIAL*/
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,10 +32,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
-import { CatalogoCategoriasComponent } from './categorias/participantes/catalogo-categorias.component';
-import { CategoriasFormComponent } from './categorias/participantes-form/categorias-form.component';
-import { CatalogoServiciosComponent } from './servicios/catalogo-servicios/catalogo-servicios.component';
-import { CatalogoServiciosFormComponent } from './servicios/catalogo-servicios-form/catalogo-servicios-form.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
@@ -42,16 +40,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     DashboardAdminComponent,
     HeaderAdminComponent,
     HomeAdminComponent,
-    ContactosAdminComponent,
-    CatalogoUsuariosComponent,
+    InvitarComponent,
     ProductosFormComponent,
     FooterComponent,
     SafePipe,
     //PhonePipe,
-    CatalogoCategoriasComponent,
-    CategoriasFormComponent,
-    CatalogoServiciosComponent,
-    CatalogoServiciosFormComponent
+    ParticipantesComponent,
+    ParticipantesFormComponent,
+    ListaParticipantesComponent,
     ],
   imports: [
     CommonModule,
