@@ -1,5 +1,5 @@
-package com.examen.agenda.corpotativa.exceptionhandler;
-//package com.baz.pagosfisicos.exceptionhandler;
+//package com.examen.agenda.corpotativa.exceptionhandler;
+////package com.baz.pagosfisicos.exceptionhandler;
 //
 //import java.util.ArrayList;
 //import java.util.Arrays;
@@ -25,19 +25,20 @@ package com.examen.agenda.corpotativa.exceptionhandler;
 //import org.springframework.web.context.request.WebRequest;
 //import org.springframework.web.servlet.NoHandlerFoundException;
 //
+//import com.examen.agenda.corpotativa.model.GenericResponse;
 ////import com.baz.commons.exception.ErrorUtil;
 ////import com.baz.commons.model.GenericResponse;
 ////import com.baz.commons.util.ConstantesError;
 ////import com.baz.commons.util.RandomStringGenerator;
 ////import com.baz.pagosfisicos.excepcion.LogicException;
 ////import com.baz.pagosfisicos.excepcion.ParamsException;
-//import com.baz.pagosfisicos.excepcion.ServiceException;
-//import com.baz.pagosfisicos.excepcion.UnauthorizedException;
-//import com.baz.pagosfisicos.excepcion.enums.ErrorCode400;
-//import com.baz.pagosfisicos.excepcion.enums.ErrorCode500;
-//import com.baz.pagosfisicos.model.GenericResponse;
-//import com.baz.pagosfisicos.utils.RandomStringGenerator;
-//import com.baz.pagosfisicos.utils.RespuestasHttp;
+////import com.baz.pagosfisicos.excepcion.ServiceException;
+////import com.baz.pagosfisicos.excepcion.UnauthorizedException;
+////import com.baz.pagosfisicos.excepcion.enums.ErrorCode400;
+////import com.baz.pagosfisicos.excepcion.enums.ErrorCode500;
+////import com.baz.pagosfisicos.model.GenericResponse;
+////import com.baz.pagosfisicos.utils.RandomStringGenerator;
+////import com.baz.pagosfisicos.utils.RespuestasHttp;
 //import com.fasterxml.jackson.databind.JsonMappingException.Reference;
 //import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 //

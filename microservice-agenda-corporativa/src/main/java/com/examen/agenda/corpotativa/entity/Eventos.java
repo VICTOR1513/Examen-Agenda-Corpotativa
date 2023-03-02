@@ -1,6 +1,7 @@
-package com.examen.agenda.corpotativa.dao.entity;
+package com.examen.agenda.corpotativa.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -9,13 +10,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Entity
-@Table(name = "participantes")
+@Table(name = "eventos")
 @Data
-public class Participantes implements Serializable {
+public class Eventos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,20 +27,18 @@ public class Participantes implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 
-	@NotBlank
 	@Column(name = "nombre")
 	private String nombre;
 
-	@NotBlank
-	@Column(name = "apellido_paterno")
-	private String apellidoPaterno;
+	@Column(name = "cupo")
+	private Integer cupo;
 
-	@NotBlank
-	@Column(name = "apellido_materno")
-	private String apellidoMaterno;
+	@Column(name = "fecha")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fecha;
 
-	@NotBlank
-	@Column(name = "id_rool")
-	private Integer idRool;
+	@Column(name = "fecha_modifico")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaModifico;
 
 }

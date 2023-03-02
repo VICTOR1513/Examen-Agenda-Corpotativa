@@ -1,4 +1,4 @@
-package com.examen.agenda.corpotativa.dao.entity;
+package com.examen.agenda.corpotativa.entity;
 
 import java.io.Serializable;
 

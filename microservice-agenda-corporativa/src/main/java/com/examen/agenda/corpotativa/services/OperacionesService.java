@@ -8,7 +8,5 @@ import com.examen.agenda.corpotativa.model.GenericResponse;
 public interface OperacionesService {
 
 	public GenericResponse<String> estatus() throws HttpServerErrorException, ArgumentNotValidException;
-	
-	public GenericResponse<?> registro(Object body) throws HttpServerErrorException, ArgumentNotValidException;
 
 }

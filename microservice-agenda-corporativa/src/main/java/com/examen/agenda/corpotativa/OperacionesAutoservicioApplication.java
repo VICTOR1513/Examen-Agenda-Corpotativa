@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.baz")
+@ComponentScan("com.examen")
 //@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 public class OperacionesAutoservicioApplication {
 
